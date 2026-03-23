@@ -18,8 +18,7 @@ interface Event {
   dressCode?: string;
 }
 
-export default function Events() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   const events: Event[] = [
@@ -90,7 +89,7 @@ export default function Events() {
     },
     {
       id: 6,
-      title: 'Romantic Dinner Under the Stars',
+      title: 'Romantic Dinner Under Stars',
       date: '2025-01-14',
       time: '7:30 PM',
       description: 'Special Valentine\'s preview dinner with live acoustic music and specially curated menu for couples.',
@@ -100,40 +99,10 @@ export default function Events() {
       location: 'Sky Garden',
       organizer: 'Kwetu Romance Club',
       dressCode: 'Semi-Formal'
-    },
-    {
-      id: 7,
-      title: 'Art Exhibition Opening',
-      date: '2025-01-18',
-      time: '6:00 PM',
-      description: 'Featuring works from local and international artists. Wine reception and guided tours available.',
-      price: '',
-      image: 'fa-palette',
-      category: 'Arts & Culture',
-      location: 'Art Gallery',
-      organizer: 'Kwetu Arts Committee',
-      dressCode: 'Cocktail Attire'
-    },
-    {
-      id: 8,
-      title: 'Wellness Workshop',
-      date: '2025-01-22',
-      time: '10:00 AM',
-      description: 'Learn about mindfulness, yoga, and healthy living from certified wellness coaches.',
-      price: '',
-      image: 'fa-spa',
-      category: 'Wellness',
-      location: 'Wellness Center',
-      organizer: 'Kwetu Health Club',
-      dressCode: 'Athleisure'
     }
   ];
 
-  const categories = ['All', 'Music', 'Food & Drink', 'Celebration', 'Networking', 'Romantic', 'Arts & Culture', 'Wellness'];
-  
-  const filteredEvents = selectedCategory === 'All' 
-    ? events 
-    : events.filter(event => event.category === selectedCategory);
+  const filteredEvents = events;
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { 
@@ -143,10 +112,6 @@ export default function Events() {
       day: 'numeric' 
     };
     return new Date(dateString).toLocaleDateString('en-US', options);
-  };
-
-  const isUpcoming = (dateString: string) => {
-    return new Date(dateString) >= new Date();
   };
 
   const sortedEvents = filteredEvents.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
@@ -177,77 +142,18 @@ export default function Events() {
             </p>
           </div>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-yellow-500 text-gray-900'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
           {/* Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 max-w-6xl mx-auto">
             {sortedEvents.map((event) => (
               <div 
                 key={event.id} 
-                className={`bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow ${
-                  !isUpcoming(event.date) ? 'opacity-75' : ''
-                }`}
+                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+                onClick={() => setSelectedEvent(event)}
               >
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div className="text-4xl text-center text-yellow-500">
-                      {renderEventImage(event.image)}
-                    </div>
-                    {!isUpcoming(event.date) && (
-                      <span className="bg-gray-500 text-white text-xs px-2 py-1 rounded-full">
-                        PAST
-                      </span>
-                    )}
-                    {isUpcoming(event.date) && (
-                      <span className="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                        UPCOMING
-                      </span>
-                    )}
-                  </div>
-                  
-                  <div className="mb-2">
-                    <span className="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">
-                      {event.category}
-                    </span>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                  
-                  <div className="text-gray-600 text-sm mb-3 space-y-1">
-                    <p><i className="far fa-calendar"></i> {formatDate(event.date)}</p>
-                    <p><i className="far fa-clock"></i> {event.time}</p>
-                    <p><i className="fas fa-map-marker-alt"></i> {event.location}</p>
-                    <p><i className="fas fa-user-tie"></i> {event.organizer}</p>
-                    {event.dressCode && (
-                      <p><i className="fas fa-tshirt"></i> {event.dressCode}</p>
-                    )}
-                  </div>
-                  
-                  <p className="text-gray-600 mb-4">{event.description}</p>
-                  
-                  <div className="flex justify-between items-center">
-                    <button
-                      onClick={() => setSelectedEvent(event)}
-                      className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded transition-colors text-sm"
-                    >
-                      View Details
-                    </button>
-                  </div>
+                {/* Image - 100% of card height */}
+                <div className="h-56 relative bg-cover bg-center bg-no-repeat" 
+                     style={{ backgroundImage: `url('/images/events/Events ${event.id === 1 ? '1' : event.id === 2 ? '2' : '1'}.jpeg')` }}>
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10"></div>
                 </div>
               </div>
             ))}
@@ -255,96 +161,129 @@ export default function Events() {
 
           {/* Event Detail Modal */}
           {selectedEvent && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h2 className="text-2xl font-bold text-gray-900 mb-2">{selectedEvent.title}</h2>
-                      <div className="flex items-center space-x-3">
-                        <span className="inline-block bg-yellow-100 text-yellow-800 text-sm px-3 py-1 rounded-full">
-                          {selectedEvent.category}
-                        </span>
-                        <span className="inline-block bg-green-500 text-white text-sm px-3 py-1 rounded-full">
-                          {isUpcoming(selectedEvent.date) ? 'UPCOMING' : 'PAST'}
-                        </span>
+            <div className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+              <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all">
+                {/* Modal Header with Image Background */}
+                <div className="relative h-64 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-t-2xl">
+                  <div className="absolute inset-0 bg-black bg-opacity-20 rounded-t-2xl"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-white text-center">
+                      <div className="text-6xl mb-2 drop-shadow-lg">
+                        {renderEventImage(selectedEvent.image)}
                       </div>
+                      <h2 className="text-3xl font-bold drop-shadow-lg">{selectedEvent.title}</h2>
                     </div>
-                    <button
-                      onClick={() => setSelectedEvent(null)}
-                      className="text-gray-500 hover:text-gray-700 text-2xl"
-                    >
-                      ×
-                    </button>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    <div className="text-center">
-                      <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i className={`fas ${selectedEvent.image} text-4xl text-yellow-500`}></i>
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedEvent(null)}
+                    className="absolute top-4 right-4 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 rounded-full w-10 h-10 flex items-center justify-center transition-all"
+                  >
+                    <i className="fas fa-times text-xl"></i>
+                  </button>
+                </div>
+                
+                {/* Event Details */}
+                <div className="p-8">
+                  {/* Quick Info Badges */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <span className="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-sm font-medium">
+                      {selectedEvent.category}
+                    </span>
+                    <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                      AVAILABLE
+                    </span>
+                  </div>
+                  
+                  {/* Event Information Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div className="space-y-4">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                          <i className="far fa-calendar text-white"></i>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">Date</p>
+                          <p className="text-gray-600">{formatDate(selectedEvent.date)}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                          <i className="far fa-clock text-white"></i>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">Time</p>
+                          <p className="text-gray-600">{selectedEvent.time}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                          <i className="fas fa-map-marker-alt text-white"></i>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">Location</p>
+                          <p className="text-gray-600">{selectedEvent.location}</p>
+                        </div>
                       </div>
                     </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-3">Event Information</h3>
-                      <div className="space-y-2 text-sm text-gray-600">
-                        <div className="flex justify-between">
-                          <span className="font-medium">Date:</span>
-                          <span>{formatDate(selectedEvent.date)}</span>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                          <i className="fas fa-user-tie text-white"></i>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Time:</span>
-                          <span>{selectedEvent.time}</span>
+                        <div>
+                          <p className="font-semibold text-gray-900">Organizer</p>
+                          <p className="text-gray-600">{selectedEvent.organizer}</p>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Location:</span>
-                          <span>{selectedEvent.location}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="font-medium">Organizer:</span>
-                          <span>{selectedEvent.organizer}</span>
-                        </div>
-                        {selectedEvent.dressCode && (
-                          <div className="flex justify-between">
-                            <span className="font-medium">Dress Code:</span>
-                            <span>{selectedEvent.dressCode}</span>
+                      </div>
+                      
+                      {selectedEvent.dressCode && (
+                        <div className="flex items-start space-x-3">
+                          <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i className="fas fa-tshirt text-white"></i>
                           </div>
-                        )}
-                        <div className="flex justify-between">
-                          <span className="font-medium">Entry:</span>
-                          <span className="font-bold text-green-600">Open to All</span>
+                          <div>
+                            <p className="font-semibold text-gray-900">Dress Code</p>
+                            <p className="text-gray-600">{selectedEvent.dressCode}</p>
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="flex items-start space-x-3">
+                        <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                          <i className="fas fa-ticket-alt text-white"></i>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">Entry</p>
+                          <p className="text-gray-600">Open to All</p>
                         </div>
                       </div>
                     </div>
                   </div>
-
-                  <div className="mb-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">About This Event</h3>
-                    <p className="text-gray-600">{selectedEvent.description}</p>
+                  
+                  {/* Description */}
+                  <div className="bg-gray-50 rounded-xl p-6 mb-6">
+                    <h3 className="font-bold text-gray-900 mb-3 text-lg">About This Event</h3>
+                    <p className="text-gray-600 leading-relaxed">{selectedEvent.description}</p>
                   </div>
-
-                  <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mb-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">Event Information</h3>
-                    <div className="space-y-2 text-sm text-gray-600">
-                      <div><i className="fas fa-info-circle text-blue-500"></i> Join us for memorable experiences</div>
-                      <div><i className="fas fa-users text-green-500"></i> Open to members and guests</div>
-                      <div><i className="fas fa-camera text-purple-500"></i> Photography welcome</div>
-                    </div>
-                  </div>
-
+                  
+                  {/* Action Buttons */}
                   <div className="flex gap-4">
                     <button
                       onClick={() => setSelectedEvent(null)}
-                      className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded transition-colors"
+                      className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-xl transition-colors"
                     >
                       Close
                     </button>
-                    {isUpcoming(selectedEvent.date) && (
-                      <button
-                        className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-2 px-4 rounded transition-colors"
-                      >
-                        Add to Calendar
-                      </button>
-                    )}
+                    <button
+                      className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-xl transition-colors"
+                    >
+                      Reserve Spot
+                    </button>
                   </div>
                 </div>
               </div>

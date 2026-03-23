@@ -175,7 +175,7 @@ export default function Requests() {
 
               <button
                 type="submit"
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                className="w-full bg-black hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-lg transition-colors"
               >
                 Submit Request
               </button>

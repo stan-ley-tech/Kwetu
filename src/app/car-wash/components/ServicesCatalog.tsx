@@ -141,7 +141,7 @@ export default function ServicesCatalog() {
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               selectedCategory === category
                 ? 'bg-yellow-500 text-gray-900'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                : 'bg-black text-white hover:bg-gray-800'
             }`}
           >
             {category}

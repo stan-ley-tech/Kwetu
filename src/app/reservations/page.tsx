@@ -92,7 +92,7 @@ export default function Reservations() {
 
     const basePrice = selectedEvent.basePrice;
     const guestCount = parseInt(formData.guests);
-    const totalPrice = basePrice + (guestCount * 100); // $100 per guest additional
+    const totalPrice = basePrice + (guestCount * 100); // Ksh 100 per guest additional
 
     const cartItem: CartItem = {
       id: Date.now().toString(),
@@ -175,7 +175,7 @@ export default function Reservations() {
                         <option value="">Select event type</option>
                         {eventTypes.map((event) => (
                           <option key={event.value} value={event.value}>
-                            {event.label} - From ${event.basePrice}
+                            {event.label} - From Ksh {event.basePrice}
                           </option>
                         ))}
                       </select>
@@ -286,15 +286,15 @@ export default function Reservations() {
                     <div className="mb-6">
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-gray-600">Subtotal</span>
-                        <span className="font-semibold">${getTotalPrice().toLocaleString()}</span>
+                        <span className="font-semibold">Ksh {getTotalPrice().toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between items-center mb-2">
                         <span className="text-gray-600">Service Fee (10%)</span>
-                        <span className="font-semibold">${(getTotalPrice() * 0.1).toLocaleString()}</span>
+                        <span className="font-semibold">Ksh {(getTotalPrice() * 0.1).toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between items-center text-lg font-bold">
                         <span>Total</span>
-                        <span>${(getTotalPrice() * 1.1).toLocaleString()}</span>
+                        <span>Ksh {(getTotalPrice() * 1.1).toLocaleString()}</span>
                       </div>
                     </div>
 

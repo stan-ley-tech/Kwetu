@@ -47,9 +47,9 @@ export default function CarWash() {
   ];
 
   const serviceTypes = [
-    { value: 'basic', label: 'Basic Wash - $20', duration: '30 mins', features: ['Exterior wash', 'Window cleaning', 'Tire shine'] },
-    { value: 'premium', label: 'Premium Wash - $35', duration: '45 mins', features: ['Exterior wash', 'Interior vacuum', 'Window cleaning', 'Tire shine', 'Dashboard polish'] },
-    { value: 'full-detailing', label: 'Full Detailing - $80', duration: '2 hours', features: ['Complete exterior wash', 'Deep interior cleaning', 'Wax application', 'Leather treatment', 'Engine cleaning', 'Air freshener'] },
+    { value: 'basic', label: 'Basic Wash - Ksh 20', duration: '30 mins', features: ['Exterior wash', 'Window cleaning', 'Tire shine'] },
+    { value: 'premium', label: 'Premium Wash - Ksh 35', duration: '45 mins', features: ['Exterior wash', 'Interior vacuum', 'Window cleaning', 'Tire shine', 'Dashboard polish'] },
+    { value: 'full-detailing', label: 'Full Detailing - Ksh 80', duration: '2 hours', features: ['Complete exterior wash', 'Deep interior cleaning', 'Wax application', 'Leather treatment', 'Engine cleaning', 'Air freshener'] },
   ];
 
   const timeSlots = [
@@ -80,7 +80,7 @@ export default function CarWash() {
                 className={`px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2 ${
                   activeTab === tab.id
                     ? 'bg-blue-500 text-white'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                    : 'bg-black text-white hover:bg-gray-800'
                 }`}
               >
                 <i className={`fas ${tab.icon}`}></i>

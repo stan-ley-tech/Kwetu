@@ -37,11 +37,11 @@ export default function Barber() {
   };
 
   const serviceTypes = [
-    { value: 'haircut', label: 'Haircut - $25', duration: '30 mins' },
-    { value: 'shave', label: 'Traditional Shave - $20', duration: '20 mins' },
-    { value: 'full-grooming', label: 'Full Grooming - $45', duration: '60 mins' },
-    { value: 'beard-trim', label: 'Beard Trim - $15', duration: '15 mins' },
-    { value: 'haircut-shave', label: 'Haircut & Shave - $40', duration: '45 mins' },
+    { value: 'haircut', label: 'Haircut - Ksh 25', duration: '30 mins' },
+    { value: 'shave', label: 'Traditional Shave - Ksh 20', duration: '20 mins' },
+    { value: 'full-grooming', label: 'Full Grooming - Ksh 45', duration: '60 mins' },
+    { value: 'beard-trim', label: 'Beard Trim - Ksh 15', duration: '15 mins' },
+    { value: 'haircut-shave', label: 'Haircut & Shave - Ksh 40', duration: '45 mins' },
   ];
 
   const timeSlots = [
@@ -71,7 +71,7 @@ export default function Barber() {
                 className={`px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2 ${
                   activeTab === tab.id
                     ? 'bg-yellow-500 text-gray-900'
-                    : 'bg-white text-gray-700 hover:bg-gray-100'
+                    : 'bg-black text-white hover:bg-gray-800'
                 }`}
               >
                 <i className={`fas ${tab.icon}`}></i>
