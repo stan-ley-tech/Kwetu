@@ -86,8 +86,9 @@ export default function Home() {
   // Touch event handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     const touchStartX = e.touches[0].clientX;
-    const handleTouchEnd = (e: React.TouchEvent) => {
-      const touchEndX = e.changedTouches[0].clientX;
+    
+    const handleTouchEnd = (event: TouchEvent) => {
+      const touchEndX = event.changedTouches[0].clientX;
       const diff = touchStartX - touchEndX;
       
       if (Math.abs(diff) > 50) { // Minimum swipe distance
@@ -103,19 +104,6 @@ export default function Home() {
     
     document.addEventListener('touchend', handleTouchEnd);
   };
-
-  const upcomingEvents = [
-    {
-      title: 'Live Music Night',
-      date: 'Dec 25, 2024',
-      description: 'Enjoy an evening of live jazz performances',
-    },
-    {
-      title: 'Food Festival',
-      date: 'Dec 28, 2024',
-      description: 'Taste cuisines from around the world',
-    },
-  ];
 
   return (
     <Layout>
