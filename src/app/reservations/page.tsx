@@ -175,7 +175,7 @@ export default function Reservations() {
                         <option value="">Select event type</option>
                         {eventTypes.map((event) => (
                           <option key={event.value} value={event.value}>
-                            {event.label} - From Ksh {event.basePrice}
+                            {event.label}
                           </option>
                         ))}
                       </select>
