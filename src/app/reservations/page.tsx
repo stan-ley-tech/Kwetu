@@ -170,7 +170,7 @@ export default function Reservations() {
                         required
                         value={formData.eventType}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-gray-900 bg-white"
                       >
                         <option value="">Select event type</option>
                         {eventTypes.map((event) => (
@@ -191,7 +191,7 @@ export default function Reservations() {
                         required
                         value={formData.guests}
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-gray-900 bg-white"
                       >
                         <option value="">Select guests</option>
                         <option value="10">10-20 Guests</option>
@@ -214,7 +214,7 @@ export default function Reservations() {
                       required
                       value={formData.eventDate}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-gray-900 bg-white"
                     />
                   </div>
 
@@ -240,7 +240,7 @@ export default function Reservations() {
                       rows={4}
                       value={formData.specialRequests}
                       onChange={handleChange}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-gray-900 bg-white"
                       placeholder="Tell us about any special requirements, dietary restrictions, or custom arrangements you need..."
                     />
                   </div>
@@ -310,7 +310,7 @@ export default function Reservations() {
                           required
                           value={formData.fullName}
                           onChange={handleChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-gray-900 bg-white"
                           placeholder="John Doe"
                         />
                       </div>
@@ -326,7 +326,7 @@ export default function Reservations() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-gray-900 bg-white"
                           placeholder="john@example.com"
                         />
                       </div>
@@ -342,7 +342,7 @@ export default function Reservations() {
                           required
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-gray-900 bg-white"
                           placeholder="+254 123 456 789"
                         />
                       </div>
